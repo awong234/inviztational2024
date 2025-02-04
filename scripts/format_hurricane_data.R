@@ -12,9 +12,8 @@ con = dbConnect(RSQLite::SQLite(), 'data/data.db')
 # Clean up data ---------
 
 hurr = readxl::read_excel('data/Copy of Atlantic & Pacific Hurricane Data.xlsx')
-# hurr = read.csv('data/hurr.csv')
 hurr = janitor::clean_names(hurr)
-# hurr = hurr %>% mutate( datetime = as.POSIXct(data_date_time, format = '%m/%d/%Y %H:%M') )
+hurr = hurr %>% mutate( datetime = as.POSIXct(data_date_time, format = '%m/%d/%Y %H:%M') )
 hurr = hurr %>% mutate(datetime = as.POSIXct(datetime, format = '%FT%H:%M:%SZ'))
 hurr = hurr %>% arrange(hurricane_id, datetime)
 hurr = hurr %>% mutate(across(where(is.numeric), ~case_when(.x == -999 ~ NA, .default = .x)))

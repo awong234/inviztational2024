@@ -10,6 +10,9 @@ con = dbConnect(RSQLite::SQLite(), 'data/data.db')
 
 output_folder = 'img/analysis/all_storm_map'
 
+world = spData::world
+atlantic = world %>% st_crop(xmin = -160, xmax = 0, ymin = 0, ymax = 84)
+
 # Plot out storm paths ----------------------
 
 path = dbGetQuery(con,

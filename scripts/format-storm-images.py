@@ -42,7 +42,6 @@ remove_empty_files(goes_path)
 # that location. Crop to the maximal radius of the storm.
 
 def gen_image(m,datetime,grad,margin=10,center_lat=45,center_lon=-70,SID='',my_dpi=200,show=False,save_img=True,show_lines=True):
-
     datetime_str = str(datetime).replace(' ', 'T').replace(':','-')
     filename=rf"./img/storm_centered/{SID}/centered_{datetime_str}.png"
     if os.path.exists(filename):
@@ -99,22 +98,12 @@ def gen_image(m,datetime,grad,margin=10,center_lat=45,center_lon=-70,SID='',my_d
         plt.axis('off')
         folder = os.path.dirname(filename)
         if not os.path.exists(folder):
-            os.mkdir(folder)
+            os.makedirs(folder, exist_ok=True)
         plt.savefig(filename, bbox_inches='tight',pad_inches=0,transparent=True);
     if show:
         plt.show()
     plt.close(fig) #memory leak if you don't close fig
     return im
-
-
-year = '2019'
-yday = '245'
-hour = '%02.0f' % 2
-
-image_path = goes_path / year / yday / hour / 'OR_ABI-L1b-RadF-M6C11_G16_s20192450200193_e20192450209501_c20192450209568.nc'
-image = Dataset(image_path)
-
-radiance = image['Rad'][:]
 
 grad = LinearSegmentedColormap.from_list('my_gradient', (
     # Edit this gradient at https://eltos.github.io/gradient/#0:FF002B-13.2:FFED00-23.5:0BF620-40.1:1E2DE4-53.5:6C6C6C-100:FFFFFF
@@ -124,11 +113,6 @@ grad = LinearSegmentedColormap.from_list('my_gradient', (
     (0.401, (0.118, 0.176, 0.894)),
     (0.535, (0.424, 0.424, 0.424)),
     (1.000, (1.000, 1.000, 1.000))))
-
-# Longitude of the satellite's orbit
-lon = image.variables['goes_imager_projection'].longitude_of_projection_origin
-lat = image.variables['goes_imager_projection'].latitude_of_projection_origin
-m = Basemap(resolution='l', projection='geos', lon_0=lon,lat_0=lat,rsphere=(6378137.00,6356752.3142))
 
 projection = {
     "2017": (0.0, -89.5),
@@ -143,12 +127,11 @@ basemaps = {
 }
 
 storms = pd.read_sql("select hurricane_id, datetime, latitude, longitude from paths_interp where hurricane_id in (select ID from chosen_storms) order by hurricane_id, datetime", con, parse_dates = ['datetime'])
-storms.hurricane_id.unique()
 
 for row in storms.iterrows():
     hurricane, datetime, mylat, mylon = row[1]
     print(hurricane, datetime, mylat, mylon)
     try:
-        gen_image(basemaps[str(datetime.year)], datetime=datetime, grad=grad, SID=hurricane, center_lat=mylat, center_lon=mylon,margin=11, show=False,show_lines=True)
+        gen_image(basemaps[str(datetime.year)], datetime=datetime, grad=grad, SID=hurricane, center_lat=mylat, center_lon=mylon, margin=11, show=False,show_lines=True)
     except:
         pass
