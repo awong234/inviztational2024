@@ -2,7 +2,7 @@ name: goes2go
 channels:
   - conda-forge
 dependencies:
-  - python>=3.11
+  - python=3.12
   - pip
   - git
   - rclone >= 1.58.0 # Not required by goes2go, but is an awesome alternative https://rclone.org/
@@ -11,6 +11,7 @@ dependencies:
   # Tools
   # -----
   - cartopy
+  - basemap
   - geopandas
   - goes2go
   - h5netcdf
@@ -33,9 +34,9 @@ dependencies:
   - isort
   - pytest
 
-  - pip:
-      # Borrow some tools from my garage
-      - git+https://github.com/blaylockbk/Carpenter_Workshop.git
+#  - pip:
+#      # Borrow some tools from my garage
+#      - git+https://github.com/blaylockbk/Carpenter_Workshop.git
 ###############################################################################
 #
 # Note: Being more specific with versions *may* help speed up conda
