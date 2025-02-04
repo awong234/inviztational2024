@@ -33,4 +33,5 @@ make_video "img/storm_centered/AL172019" "video/olga.mp4"
 # Copy videos to website directory
 cp video inviztational2024 -r
 cp audio inviztational2024 -r
-cp img/analysis inviztational2024
+# Copy analytical images to directory
+find img/analysis -maxdepth 1 -type f -exec cp {} inviztational2024/analysis \;
