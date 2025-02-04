@@ -3,17 +3,23 @@
 # Should edit the "~/.config/goes2go/config.toml" path so that the value is set
 # as desired.
 
+mamba env create -f environment_spec.yml
+
 # Activate conda environment
-conda activate goes2go
+mamba activate goes2go
+
+# Install packages for R environment
+Rscript setup.R
 
 # First step is to process xl file into sqlite database
 Rscript scripts/format_hurricane_data.R
 
 # We can produce some of the image sets for the final product from this point already
-Rscript scripts/make_all_storm_map.R
-Rscript scripts/make_map_track.R
-Rscript scripts/make_storm_profiles_charts.R
-Rscript scripts/spatial_analysis.R
+# Can be run simultaneously
+Rscript scripts/make_all_storm_map.R &
+Rscript scripts/make_map_track.R &
+Rscript scripts/make_storm_profiles_charts.R &
+Rscript scripts/spatial_analysis.R &
 
 # We will need to handle the satellite imagery download and centering. This
 # depends only on the first step creating the SQLite database.
