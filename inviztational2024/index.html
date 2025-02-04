@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>BERMUDA HIGH</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<style>
+			.gamebutton {
+				font-size: 1em;
+				font-family: Consolas, "Courier New", "monospace";
+				color: #55dac4;
+				background-color: #151e37;
+				border-radius: 10px;
+			}
+			#startbutton {
+				position: absolute;
+				bottom: 120px;
+				left: 44%;
+			}
+			.bhlogo {
+				height: 100px;
+				position: absolute;
+				top: -50px;
+				right: -20px;
+			}
+			.header {
+				margin-top: 100px;
+			}
+			.winners-record {
+				vertical-align: middle;
+			}
+			.winners-icon {
+				height: 50px;
+			}
+
+			.credits {
+				position: absolute;
+				top: 1000px;
+				left: 0px;
+				animation: scrollUp 30s linear forwards;
+			}
+
+			.credits-text {
+				font-size: 0.5em;
+			}
+
+			@keyframes scrollUp {
+				0% {
+					top: 1000px;
+				}
+				100% {
+					top: -2500px;
+				}
+			}
+		</style>
+		<script>
+			class State {
+				constructor() {
+					this.state = 0; // Initial state
+				}
+
+				switch() {
+					this.state = this.state === 0 ? 1 : 0;
+				}
+
+				state() {
+					return this.state;
+				}
+			}
+
+			function playAudio(id) {
+				var audio = document.getElementById(id);
+				if (state.state===0) {
+					audio.volume = 0.2;
+					audio.play();
+				} else {
+					audio.pause();
+				}
+				state.switch()
+			}
+			state = new State()
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<!-- INTRODUCTION -->
+				<section data-auto-animate>
+					<audio id="intro-audio" loop="true">
+						<source src="./audio/time-theme.mp3">
+					</audio>
+					<img data-id="logo1" src="bermuda_high.png" style="margin-top:10%">
+					<button id="startbutton" class="gamebutton navigate-right enabled">Press Start</button>
+				</section>
+				<!-- STORM SELECTION -->
+				<section data-auto-animate>
+					<div><h1 class="header" style="font-size:2em">CHOOSE YOUR STORM</h1></div>
+						<div><img src="./analysis/storm-stats.png" height="800px"></div>
+				<img data-id="logo1" src="bermuda_high.png" class="bhlogo">
+
+				<aside class="notes">
+					<p>Storm year cutoff: 2000</p>
+					<p>Average storm speed: 11.9 mph</p>
+					<p>Average storm distance traveled: 1953 mi</p>
+					<p>Average storm lifetime: 164 h</p>
+				</aside>
+
+				</section>
+				<!-- RACE!!!!!!! -->
+				<section>
+					<div style="margin-top:auto">
+						<video width="100%" height="100%" controls id="video-race" onloadstart="this.volume=0.2">
+							<source src="./video/race.mp4" type="video/mp4">
+						</video>
+					</div>
+				</section>
+				<!-- AFTER RACE -->
+				<section>
+					<h1>Winners</h1>
+					<img src="bermuda_high.png" class="bhlogo">
+					<audio id="finish-audio" loop="true">
+						<source src="./audio/fake-fzero-finish2.mp3">
+					</audio>
+					<table class="winners-table">
+						<th>
+							<td></td>
+							<td style="font-style: italic;">Distance</td>
+							<td style="font-style: italic;">Time</td>
+							<td style="font-style: italic;">Gap</td>
+						</th>
+						<tr>
+							<td class="winners-record fragment fade-up" data-fragment-index="0"><img class="winners-icon" src='first.png'></td>
+							<td class="winners-record fragment fade-up" data-fragment-index="0"><span style="color: #00612f;">IRMA 2017</span></td>
+							<td class="winners-record fragment fade-up" data-fragment-index="0">4000 miles</td>
+							<td class="winners-record fragment fade-up" data-fragment-index="0">293 hours</td>
+							<td class="winners-record fragment fade-up" data-fragment-index="0">+0.00 hours</td>
+						</tr>
+						<tr>
+							<td class="winners-record fragment fade-up" data-fragment-index="1"><img class="winners-icon" src='second.png'></td>
+							<td class="winners-record fragment fade-up" data-fragment-index="1"><span style="color: #0203f1;">MARIA 2017</span></td>
+							<td class="winners-record fragment fade-up" data-fragment-index="1">4000 miles</td>
+							<td class="winners-record fragment fade-up" data-fragment-index="1">337 hours</td>
+							<td class="winners-record fragment fade-up" data-fragment-index="1">+44 hours</td>
+						</tr>
+						<tr>
+							<td class="winners-record fragment fade-up" data-fragment-index="2"><img class="winners-icon" src='third.png'></td>
+							<td class="winners-record fragment fade-up" data-fragment-index="2"><span style="color: #c51dae;">DORIAN 2019</span></td>
+							<td class="winners-record fragment fade-up" data-fragment-index="2">4000 miles</td>
+							<td class="winners-record fragment fade-up" data-fragment-index="2">347 hours</td>
+							<td class="winners-record fragment fade-up" data-fragment-index="2">+54 hours</td>
+						</tr>
+						<tr>
+							<td class="winners-record fragment fade-up" data-fragment-index="3"><img class="winners-icon" src='fourth.png'></td>
+							<td class="winners-record fragment fade-up" data-fragment-index="3"><span style="color: #ffa200;">IAN 2022</span> (No finish)</td>
+							<td class="winners-record fragment fade-up" data-fragment-index="3">2514 miles</td>
+							<td class="winners-record fragment fade-up" data-fragment-index="3">204 hours</td>
+							<td class="winners-record fragment fade-up" data-fragment-index="3">NA hours</td>
+						</tr>
+						<tr>
+							<td class="winners-record fragment fade-up" data-fragment-index="4"><img class="winners-icon" src='fifth.png'></td>
+							<td class="winners-record fragment fade-up" data-fragment-index="4"><span style="color: #a32727;">OLGA 2019</span>(No finish)</td>
+							<td class="winners-record fragment fade-up" data-fragment-index="4">1760 miles</td>
+							<td class="winners-record fragment fade-up" data-fragment-index="4">54 hours</td>
+							<td class="winners-record fragment fade-up" data-fragment-index="4">NA hours</td>
+						</tr>
+					</table>
+
+				<button id="endbutton" class="gamebutton" onclick="playAudio('finish-audio')">Cool Music🎵🎶</button>
+				</section>
+
+				<!-- ANALYSIS -->
+				<!-- WHY DO STORMS MOVE THE WAY THEY DO? -->
+				<section data-background-color="black">
+					<h1>A Geostatistical Analysis</h1>
+						<ul>
+							<li>What governs the path of the storms?</li>
+							<li>What governs the speed of the storms?</li>
+						</ul>
+					<div>
+						<video height="600px" controls muted>
+							<source src="./video/all_storm_map.mp4" , type="video/mp4">
+						</video>
+					</div>
+				</section>
+				<!-- GEOSTATISTICAL ANALYSIS -->
+				<section>
+					<img src="./analysis/avg-storm-speed.png" height="900px">
+				</section>
+				<section>
+					<h3 style="margin-top:100px">Speed is only one component of velocity</h3>
+					<svg width="900" height="900" xmlns="http://www.w3.org/2000/svg">
+						<defs>
+							<!-- A marker to be used as an arrowhead -->
+							<marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" stroke="white"
+								fill="white" orient="auto-start-reverse">
+								<path d="M 0 0 L 10 5 L 0 10 z" />
+							</marker>
+						</defs>
+						<line x1="450" y1="450" x2="600" y2="100" stroke="white" marker-end="url(#arrow)" style="stroke-width: 2px; stroke: white"/>
+						<text x="470" y="300" stroke="white" fill="white">s</text>
+						<line class="fragment" data-fragment-index="1" x1="450" y1="450" x2="600" y2="450" stroke="white" marker-end="url(#arrow)"/>
+						<line class="fragment" data-fragment-index="1" x1="600" y1="450" x2="600" y2="100" stroke="white" marker-end="url(#arrow)"/>
+						<path class="fragment" data-fragment-index="1" d="M 480 380 q 50 0 50 70" stroke="white" stroke-width="4" fill="none" />
+						<text class="fragment" data-fragment-index="1" x="470" y="440" stroke="white" fill="white">Θ</text>
+						<text class="fragment" data-fragment-index="1" x="500" y="500" stroke="white" fill="white">Δx</text>
+						<text class="fragment" data-fragment-index="1" x="620" y="300" stroke="white" fill="white">Δy</text>
+					</svg>
+				</section>
+				<section>
+					<img src="./analysis/storm-vector-field.png" height="900px">
+				</section>
+				<section>
+					<video controls mute height="900px">
+						<source src="./video/predicted_paths.mp4", type="video/mp4" >
+					</video>
+				</section>
+				<!-- PHYSICAL EXPLANATION -->
+				<section>
+					<h1>The Bermuda High</h1>
+					<video controls height="600px">
+						<source src="./bermudaHigh.webm" , type="video/webm">
+					</video>
+					<p>Credits:</p>
+					<p class="credits-text">NASA/Goddard Space Flight Center Conceptual Images Lab</p>
+					<p class="credits-text">Animator: Susan Twardy (HTSI)</p>
+					<p class="credits-text">Scientist: David Adamec (NASA/GSFC)</p>
+				</section>
+				<section>
+					<h1>Westerlies / Anti-Trade Winds</h1>
+					<img src="atmostpheric-circulation.webp" height="600px">
+					<p>Credits:</p>
+					<p class="credits-text">Britannica, The Editors of Encyclopaedia. "atmospheric circulation".</p>
+					<p class="credits-text">Encyclopedia Britannica, 7 Mar. 2019,</p>
+					<p class="credits-text">https://www.britannica.com/science/atmospheric-circulation. Accessed 2 October 2024.</p>
+				</section>
+				<!-- CONCLUSION -->
+				<section>
+					<h4 style="margin-top:00px">Wrapping Up</h4>
+					<p></p>
+					<p style="font-size:0.7em;">Dorian 2019</p>
+					<video controls muted autoplay loop height="300px">
+						<source src="./video/dorian.mp4" , type="video/mp4">
+					</video>
+					<div style="margin-left:25%; width:1200px">
+						<ul>
+							<li>Fun visualization of NOAA satellite imagery</li>
+							<li>Statistical modeling of storm movement</li>
+							<li>Some science behind movement dynamics: Bermuda High</li>
+							<li>Looking forward...</li>
+						</ul>
+					</div>
+				</section>
+				<!-- CREDITS -->
+				<section>
+					<h1>Thank you!</h1>
+					<div style="display:flex; justify-content: space-around;">
+						<!-- <div>
+							<p style="font-size:0.7em;">Dorian 2019</p>
+							<video controls muted autoplay loop> <source src="./video/dorian.mp4" , type="video/mp4"> </video>
+						</div> -->
+						<!-- <div>
+							<p style="font-size:0.7em;">Ian 2022</p>
+							<video controls muted autoplay loop> <source src="./video/ian.mp4" , type="video/mp4"> </video>
+						</div> -->
+						<!-- <div>
+							<p style="font-size:0.7em;">Irma 2017</p>
+							<video controls muted autoplay loop> <source src="./video/irma.mp4" , type="video/mp4"> </video>
+						</div>
+						<div>
+							<p style="font-size:0.7em;">Maria 2017</p>
+							<video controls muted autoplay loop> <source src="./video/maria.mp4" , type="video/mp4"> </video>
+						</div>
+						<div>
+							<p style="font-size:0.7em;">Olga 2019</p>
+							<video controls muted autoplay loop> <source src="./video/olga.mp4" , type="video/mp4"> </video>
+						</div> -->
+					</div>
+					<h4 style="margin-top:10px">Credits:</h4>
+					<div style="font-size:0.56em; width:1500px; margin:auto;">
+						<ul>
+							<li>NOAA Geostationary Operational Environmental Satellites (GOES) 16 was accessed September, 2024 from https://registry.opendata.aws/noaa-goes</li>
+							<li>A portion of this work used code generously provided by Brian Blaylock's GOES-2-go python package (https://github.com/blaylockbk/goes2go)</li>
+							<li>R version 4.4.0</li>
+							<li>Python version 3.11</li>
+							<li>Select credits for geospatial analysis</li>
+								<ul>
+									<li>R packages: {mgcv}, {sf}, {fields}</li>
+									<li>Python packages: {cartopy}, {matplotlib}, {basemap}, {geopandas}, {netcdf4}</li>
+								</ul>
+							<li>Image frames compiled with <code>`imagemagick`</code> from R</li>
+							<li>Video frames composed with <code>`ffmpeg`</code></li>
+							<li>Sprite-sheets used:</li>
+							<ul>
+								<li>https://www.deviantart.com/johnnytzut96/art/Oasis-in-Desert-TileSet-and-Sprite-Sheet-1011976003/ Credit: JohnnyTzut96</li>
+								<li>https://www.spriters-resource.com/fullview/113678/ Credit: Mister Mike</li>
+							</ul>
+							<li>Slides presented using reveal.js Credit: Hakim El Hattab et al.</li>
+						</ul>
+					</div>
+				</section>
+				 <!-- <section>
+					<div class="credits">
+						<img src="credits.png" width="2000px" >
+					</div>
+				 </section> -->
+				 <section>
+					<h1>Appendix</h1>
+				 </section>
+				 <section>
+					<img src="./analysis/avg-storm-accel.png" height="900px">
+				 </section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/zoom/zoom.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				center: false,
+				transition: 'none',
+				textTransform: 'none',
+				width: 2000,
+				height: 1000,
+				minScale: 0.5,
+				maxScale: 2,
+				autoAnimateDuration: 0.5,
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+			});
+		</script>
+	</body>
+</html>
