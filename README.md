@@ -13,6 +13,6 @@ Python 3.13 not compatible at this time, until which time dependencies can be re
 3. Alternatively, the `environment_spec.yml` is a little more specific with package versions, but also might not be portable to different systems. `mamba env create -f environment_spec.yml`
 4. Alternatively, the `pipreqs.txt` file contains a minimal set of packages from pip to compose all the content. `pip install -r pipreqs.txt`
 5. Download and install R version 4.4.0 or higher. This can be downloaded from [the website](https://cran.r-project.org/bin/windows/base/), or done through conda or something like chocolatey. Make sure the Rscript.exe is on your path variable.
-6. Run `setup.R` to install requisite packages.
+6. Run `setup.R` to install requisite packages. `.Rprofile` specifies binary packages dates drawn from 2024-10-04, from Posit Package Manager. Should be stable for a while so long as PPM remains active.
 7. Install `ffmpeg`>=7.0.0; this can be done through conda or something like chocolatey.
 8. Run all the steps in `procedure.sh`.
