@@ -4,11 +4,14 @@ import sqlite3
 import pathlib
 import numpy as np
 import pandas as pd
+import matplotlib
 import matplotlib.pyplot as plt
 from mpl_toolkits.basemap import Basemap
 from matplotlib.colors import LinearSegmentedColormap
 import os
 import toml
+
+# matplotlib.use("Agg") # May want to set if running non-interactively to avoid tkinter errors.
 
 con = sqlite3.connect('data/data.db')
 G = GOES(satellite=16, product="ABI-L1b-Rad", domain='F', channel=11)
